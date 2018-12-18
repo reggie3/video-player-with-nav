@@ -1,118 +1,35 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { Text } from 'native-base';
 
-// use smallInViewPlayer  from VideoPlayer1 as the basis, and don't use a modal for fullscreen
-// use fullScreen techniques from https://github.com/expo/videoplayer
-import VideoPlayer from './VideoPlayer';
 
-import { Constants, Video, ScreenOrientation } from 'expo';
-
- const URI =
-   'https://res.cloudinary.com/tourystory/video/upload/v1544021333/FACEBOOK-2138947072790494--d2a00850-f89c-11e8-81c6-d3965f15fa89/d39bf480-f89c-11e8-81c6-d3965f15fa89--d68bc170-f89c-11e8-81c6-d3965f15fa89.mp4';
+import VideoScreen from './VideoScreen'
+import IntroScreen from './IntroScreen'
 // 
+import { createStackNavigator } from 'react-navigation';
 
-const random_rgba = () => {
-  var o = Math.round,
-    r = Math.random,
-    s = 255;
-  return (
-    'rgba(' +
-    o(r() * s) +
-    ',' +
-    o(r() * s) +
-    ',' +
-    o(r() * s) +
-    ',' +
-    r().toFixed(1) +
-    ')'
-  );
-};
-const BACKGROUND_COLOR = random_rgba();
+
+const RootStack = createStackNavigator({
+  IntroScreen: {
+    screen: IntroScreen
+  },
+  VideoScreen: {
+    screen: VideoScreen
+  },
+},
+{
+  initialRouteName: 'VideoScreen',
+  navigationOptions: {
+  header: null
+  }
+});
 
 export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isFullScreen: false
-    };
-    ScreenOrientation.allowAsync(ScreenOrientation.Orientation.PORTRAIT);
-  }
-
-  toggleFullScreenCallback = () => {
-    this.setState({ isFullScreen: !this.state.isFullScreen }, () => {
-      console.log({ isFullScreen: this.state.isFullScreen });
-    });
-  };
+  
 
   render = () => {
     return (
-      <View style={styles.container}>
-        <View style={styles.statusBar} />
-        <Text
-          style={{
-            margin: 10,
-            fontSize: 24,
-            color: 'black'
-          }}
-        >
-          Video Player Demo App
-        </Text>
-        {this.state.isFullScreen ? null : (
-          <View style={{ flex: 1, backgroundColor: '#E5CCFF' }}>
-            <Text>Boundary Area</Text>
-          </View>
-        )}
-
-        <View
-          style={{
-            backgroundColor: 'rgba(25,100,255,0)',
-            padding: 15,
-            display: 'flex',
-            flex: 2,
-          }}
-        >
-          <VideoPlayer
-            videoProps={{
-              shouldPlay: true,
-              resizeMode: Video.RESIZE_MODE_CONTAIN,
-              source: {
-                uri: URI
-              }
-            }}
-            toggleFullScreenCallback={this.toggleFullScreenCallback}
-            playCompleteCallback={() => {
-              console.log('play complete');
-            }}
-            playFromPositionMillis={0}
-            isLooping={false}
-            showTimeStamp={true}
-            playerPadding={10}
-          />
-        </View>
-        {this.state.isFullScreen ? null : (
-          <View
-            style={{ flex: 1, backgroundColor: 'rgba(255,255,255,.5)' }}
-          >
-            <Text>Boundary Area</Text>
-          </View>
-        )}
-      </View>
+      <RootStack />
     );
   };
 }
 
-const styles = StyleSheet.create({
-  container: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: `${BACKGROUND_COLOR}`
-  },
-  statusBar: {
-    backgroundColor: '#6600cc',
-    height: Constants.statusBarHeight,
-    elevation: 2,
-    shadowOffset: { width: 5, height: 3 },
-    shadowColor: 'black',
-    shadowOpacity: 0.5
-  }
-});
+

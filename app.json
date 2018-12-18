@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "react-native-video-player-no-linking",
-    "description": "A simple video player with a simple UI.",
-    "slug": "react-native-video-player-no-linking",
+    "name": "video-player-with-nav",
+    "description": "Example of using react-native-video-player-no-linking in conjunction with react-navigation.",
+    "slug": "video-player-with-nav",
     "privacy": "public",
     "sdkVersion": "31.0.0",
     "platforms": ["ios", "android"],
