@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import { Text, Button } from 'native-base';
+import { Text, Button, Container } from 'native-base';
 import { withNavigation } from 'react-navigation';
+import Header from './Header';
 
 const random_rgba = () => {
   var o = Math.round,
@@ -24,15 +24,13 @@ const BACKGROUND_COLOR = random_rgba();
 class IntroScreen extends React.Component {
   render() {
     return (
-      <View
+      <Container
         style={{
-          ...StyleSheet.absoluteFillObject,
           backgroundColor: `${BACKGROUND_COLOR}`
         }}
       >
-        <View style={{ flex: 1 }}>
-          <Text>Intro Screen</Text>
-        </View>
+        <Header />
+
         <Button
           style={{ margin: 10 }}
           onPress={() => {
@@ -41,7 +39,7 @@ class IntroScreen extends React.Component {
         >
           <Text>Go to VideoScreen</Text>
         </Button>
-      </View>
+      </Container>
     );
   }
 }
