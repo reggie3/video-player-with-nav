@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import VideoPlayer from 'react-native-video-player-no-linking';
 import { Text, Button, Container } from 'native-base';
 import { Video, ScreenOrientation } from 'expo';
@@ -24,8 +24,9 @@ const random_rgba = () => {
 };
 const BACKGROUND_COLOR = random_rgba();
 
-const URI =
-  'https://res.cloudinary.com/tourystory/video/upload/v1544021333/FACEBOOK-2138947072790494--d2a00850-f89c-11e8-81c6-d3965f15fa89/d39bf480-f89c-11e8-81c6-d3965f15fa89--d68bc170-f89c-11e8-81c6-d3965f15fa89.mp4';
+/* const URI =
+  'https://res.cloudinary.com/tourystory/video/upload/v1544021333/FACEBOOK-2138947072790494--d2a00850-f89c-11e8-81c6-d3965f15fa89/d39bf480-f89c-11e8-81c6-d3965f15fa89--d68bc170-f89c-11e8-81c6-d3965f15fa89.mp4'; */
+const URI = 'http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4';
 
 class VideoScreen extends React.Component {
   constructor(props) {

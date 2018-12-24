@@ -9,17 +9,22 @@ import { AppLoading, Font } from 'expo';
 const RootStack = createStackNavigator(
   {
     IntroScreen: {
-      screen: IntroScreen
+      screen: IntroScreen,
+      navigationOptions: {
+        title: 'Intro Screen',
+        header: null,
+      }
     },
     VideoScreen: {
-      screen: VideoScreen
+      screen: VideoScreen,
+      navigationOptions: {
+        title: 'Video Screen',
+        header: null,
+      }
     }
   },
   {
     initialRouteName: 'IntroScreen',
-    navigationOptions: {
-      header: null
-    }
   }
 );
 
@@ -41,7 +46,11 @@ export default class App extends React.Component {
     if (!this.state.fontLoaded) {
       return <AppLoading />;
     } else {
-      return <RootStack />;
+      return (
+        <React.Fragment>
+          <RootStack />
+        </React.Fragment>
+      );
     }
   };
 }
